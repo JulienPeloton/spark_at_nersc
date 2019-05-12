@@ -90,24 +90,25 @@ if __name__ == "__main__":
 
     options = {
         "geometry": "points",
-        "colnames": "x,y,z",
-        "coordSys": "cartesian",
-        "gridtype": "octree"
+        "colnames": "Z_COSMO,RA,DEC",
+        "coordSys": "spherical",
+        "gridtype": "onion"
     }
 
     # Add a column containing the future partition ID.
     # Note that no shuffle has been done yet.
-    df_colid = prePartition(df, options, numPartitions=8)
+    df_colid = prePartition(df, options, numPartitions=64)
 
     ## Burning time
     for loop in range(2):
         df_repart = repartitionByCol(
-            df_colid, "partition_id", preLabeled=True, numPartitions=8)
+            df_colid, "partition_id", preLabeled=True, numPartitions=64)
         df_repart.count()
 
     ## Record times
     outputs = {"Repartitioning": []}
     for loop in range(args.nloops):
+        print(loop)
         t0 = time()
         df_repart = repartitionByCol(
             df_colid, "partition_id", preLabeled=True, numPartitions=8)
