@@ -111,7 +111,7 @@ if __name__ == "__main__":
         print(loop)
         t0 = time()
         df_repart = repartitionByCol(
-            df_colid, "partition_id", preLabeled=True, numPartitions=8)
+            df_colid, "partition_id", preLabeled=True, numPartitions=64)
         df_repart.count()
         outputs["Repartitioning"].append(time() - t0)
 
