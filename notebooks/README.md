@@ -1,0 +1,1 @@
+To play the notebook, authenticate to the JupyterHub instance (https://jupyter.nersc.gov/) using your NERSC credentials, and switch to the desc-pyspark kernel (https://github.com/LSSTDESC/nersc/tree/master/jupyter-kernels/desc-pyspark).
